@@ -6,17 +6,25 @@ const Header = () => {
     
     return(        
         <View style={styles.container}>
+            <View style={styles.icontitle}>
+                <Icon 
+                    type='material-community'
+                    name='airplane-takeoff'
+                    size={60}
+                    color = '#7198b5'            
+                />
+                <Text style={styles.text}>MyTinerari</Text>
+            </View>
+            {/* <Text style={styles.text}>Log In</Text>
+            <Text style={styles.text}>Sign Up</Text> */}
             <Icon 
                 type='material-community'
-                name='airplane-takeoff'
-                size={30}
+                name='dots-vertical'
+                size={40}
                 color = '#7198b5'            
             />
-            <Text style={styles.text}>MyTinerari</Text>
-            <Text style={styles.text}>Log In</Text>
-            <Text style={styles.text}>Sign Up</Text>
-            <Text style={styles.text}>Home</Text>
-            <Text style={styles.text}>Cities</Text>        
+            {/* <Text style={styles.text}>Home</Text>
+            <Text style={styles.text}>Cities</Text>         */}
         </View>
     )
     
@@ -32,7 +40,15 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        fontFamily:'VarelaRound_400Regular'        
+        fontFamily:'VarelaRound_400Regular',
+        marginLeft: 5,
+        fontSize: 30        
+    },
+    icontitle: {
+        flexDirection: 'row',
+        alignItems:'center',
+        width:'50%',
+
     }
 })
 
