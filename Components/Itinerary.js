@@ -1,31 +1,38 @@
 import React, { useEffect, useState, useRef } from 'react';
-import citiesActions from '../Redux/actions/citiesActions'
-import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import itinerariesActions from '../Redux/actions/itinerariesActions'
+import { StyleSheet, Text, View, Image, TextInput, ImageBackground } from 'react-native';
 import Header from '../Components/Header'
 import { connect } from "react-redux"
 import LottieView from 'lottie-react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import Buscador from '../Components/Buscador'
-const Cities = (props) => {
+
+const Itinerary = (props) => {
 
     useEffect(()=>{
-        props.getCities()
     }, [])
-
+    console.log(props.itinerary)
     return(        
         <View style={styles.container}>
-            <Header />
-            {
-                props.cities.length ? <Buscador navigation={props.navigation}/> :
-                <View style={styles.preloader}>
-                    <LottieView source={require('../assets/lf20_nSTCPQ.json')} autoPlay loop />
-                </View>
-            }            
+            
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    containerText: {
+        position:"absolute",
+        width:"100%",
+        backgroundColor: "#aeafafab",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    text: {
+        color: 'white',
+        // fontFamily:'VarelaRound_400Regular',
+        fontSize: 20,
+        // marginLeft: 10,
+        // position: "absolute"
+    },
     preloader:{
         // marginTop: 10,
         width: "100%",
@@ -53,10 +60,6 @@ const styles = StyleSheet.create({
         alignItems:'center',
         justifyContent: 'space-around'    
     },
-    text: {
-        color: 'white',
-        fontFamily:'VarelaRound_400Regular'        
-    },
     nombreCiudad: {
         paddingBottom:20,
         color:'white',
@@ -67,16 +70,20 @@ const styles = StyleSheet.create({
         height: 250,
         borderRadius:45,
         borderWidth: 1,
+        alignItems: "center",
+        justifyContent: "center",
     },
 })
 
 const mapStateToProps = state => {
     return {
-        cities: state.city.cities
+        ItineraryByCity: state.itinerary.ItineraryByCity,
+        citiesFilter:  state.city.citiesFilter,
+       
     }
 }
 const mapDispatchToProps = {
-    getCities: citiesActions.getCities,
+    
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cities)
+export default connect(mapStateToProps, mapDispatchToProps)(Itinerary)

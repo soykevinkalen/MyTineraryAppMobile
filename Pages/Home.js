@@ -5,18 +5,18 @@ import {Icon} from 'react-native-elements'
 import Carousel, {ParallaxImage} from 'react-native-snap-carousel'
 
 const cities = [
-    {title: 'London', illustration: 'https://i.ibb.co/zGv36sy/london.jpg'},
-    {title: 'New York', illustration: 'https://i.ibb.co/0cbSkXW/newyork.jpg'},
-    {title: 'Paris', illustration: 'https://i.ibb.co/JHhr5wq/paris.jpg'},
-    {title: 'Dubai', illustration: 'https://i.ibb.co/Xx1tTgj/dubai.jpg'},
-    {title: 'Tokyo', illustration: 'https://i.ibb.co/WsSZhyC/tokyo.jpg'},
+    {title: 'London', illustration: 'https://i.ibb.co/d4dvfcH/london.jpg'},
+    {title: 'New York', illustration: 'https://i.ibb.co/tmNRmvR/newyork.jpg'},
+    {title: 'Paris', illustration: 'https://i.ibb.co/dK9cC8z/paris.jpg'},
+    {title: 'Dubai', illustration: 'https://i.ibb.co/SrdGZf2/dubai.jpg'},
+    {title: 'Tokyo', illustration: 'https://i.ibb.co/DM9VcR9/tokyo.jpg'},
     {title: 'Moscow', illustration: 'https://i.ibb.co/Gk0D0cT/moscow.jpg'},
-    {title: 'Tauranga', illustration: 'https://i.ibb.co/ZxBrYXb/tauranga.jpg'},
-    {title: 'Queenstown', illustration: 'https://i.ibb.co/1z78FLJ/queenstown.jpg'},
-    {title: 'Los Angeles', illustration: 'https://i.ibb.co/09jkWVh/los-Angeles.jpg'},
-    {title: 'Madrid', illustration: 'https://i.ibb.co/JB21cDx/madrid.jpg'},
-    {title: 'Rome', illustration: 'https://i.ibb.co/GcZSmCb/rome.jpg'},
-    {title: 'Barcelona', illustration: 'https://i.ibb.co/mTSvDHG/barcelona.jpg'}          
+    {title: 'Tauranga', illustration: 'https://i.ibb.co/2jD32f8/tauranga.jpg'},
+    {title: 'Queenstown', illustration: 'https://i.ibb.co/y637SBj/queenstown.jpg'},
+    {title: 'Los Angeles', illustration: 'https://i.ibb.co/Fxyr6R1/los-Angeles.jpg'},
+    {title: 'Madrid', illustration: 'https://i.ibb.co/n8jXcfd/madrid.jpg'},
+    {title: 'Rome', illustration: 'https://i.ibb.co/YRJC1dH/rome.jpg'},
+    {title: 'Barcelona', illustration: 'https://i.ibb.co/n0s5Y3x/barcelona.jpg'}          
 ]
 
 const {width: screenWidth} = Dimensions.get('window');
@@ -179,7 +179,6 @@ const styles = StyleSheet.create({
         fontFamily:'VarelaRound_400Regular',
         fontSize: 40,
         marginLeft: 10
-
     },
     picture: {
         width: '100%',
