@@ -1,26 +1,58 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react'
-import Itineraries from '../Components/Itineraries';
-import Cities from '../Pages/Cities';
-import Home from '../Pages/Home';
-import SignIn from '../Pages/SignIn';
-import SignUp from '../Pages/SignUp';
+import Itineraries from '../components/Itineraries';
+import Cities from '../pages/Cities';
+import Home from '../pages/Home';
+import SignIn from '../pages/SignIn';
+import SignUp from '../pages/SignUp';
+import Header from '../components/Header'
 
 const stack = createStackNavigator()
-const Stack = () => {
+
+export const HomeStack = (props) => {
+    return(
+        <stack.Navigator screenOptions={{
+            title: <Header navigation={props.navigation}/>,
+            headerStyle: { backgroundColor: 'black' }
+        }}>
+            <stack.Screen name="home" component={Home}/>             
+            <stack.Screen name="cities" component={Cities} />
+            <stack.Screen name="itineraries" component={Itineraries}/>             
+
+        </stack.Navigator>
+    ) 
+}
+
+export const CitiesStack = (props) => {
     return (
-        <stack.Navigator
-            screenOptions={{
-                headerShown: false
-            }}
-        >
-            <stack.Screen name="home" component={Home}/>
+        <stack.Navigator screenOptions={{
+            title: <Header navigation={props.navigation}/>,
+            headerStyle: { backgroundColor: 'black' }
+        }}>
             <stack.Screen name="cities" component={Cities}/>
-            <stack.Screen name="itineraries" component={Itineraries}/>
-            <stack.Screen name="signin" component={SignIn}/>
-            <stack.Screen name="signup" component={SignUp}/>            
+            <stack.Screen name="itineraries" component={Itineraries}/>             
         </stack.Navigator>
     )
 }
 
-export default Stack
+export const SignInStack = (props) => {
+    return (
+        <stack.Navigator screenOptions={{
+            title: <Header navigation={props.navigation}/>,
+            headerStyle: { backgroundColor: 'black' }
+        }}>
+            <stack.Screen name="signin" component={SignIn}/>            
+        </stack.Navigator>
+    )
+}
+
+export const SignUpStack = (props) => {
+    return (
+        <stack.Navigator screenOptions={{
+            title: <Header navigation={props.navigation}/>,
+            headerStyle: { backgroundColor: 'black' }
+        }}>
+            <stack.Screen name="signup" component={SignUp}/>            
+        </stack.Navigator>
+    )
+}

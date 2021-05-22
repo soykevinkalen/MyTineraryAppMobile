@@ -2,8 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {Icon} from 'react-native-elements'
 
-const Header = () => {
-    
+const Header = (props) => {
     return(        
         <View style={styles.container}>
             <View style={styles.icontitle}>
@@ -11,7 +10,7 @@ const Header = () => {
                     type='material-community'
                     name='airplane-takeoff'
                     size={60}
-                    color = '#7198b5'            
+                    color = '#7198b5'
                 />
                 <Text style={styles.text}>MyTinerari</Text>
             </View>
@@ -21,7 +20,9 @@ const Header = () => {
                 type='material-community'
                 name='dots-vertical'
                 size={40}
-                color = '#7198b5'            
+                color = '#7198b5'   
+                onPress={() => props.navigation.openDrawer()}            
+
             />
             {/* <Text style={styles.text}>Home</Text>
             <Text style={styles.text}>Cities</Text>         */}

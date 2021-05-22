@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
-import citiesActions from '../Redux/actions/citiesActions'
+import citiesActions from '../redux/actions/citiesActions'
 import { StyleSheet, Text, View, Image, TextInput } from 'react-native';
-import Header from '../Components/Header'
+import Header from '../components/Header'
 import { connect } from "react-redux"
 import LottieView from 'lottie-react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import Buscador from '../Components/Buscador'
+import Buscador from '../components/Buscador'
 const Cities = (props) => {
 
     useEffect(()=>{
@@ -14,7 +14,6 @@ const Cities = (props) => {
 
     return(        
         <View style={styles.container}>
-            <Header />
             {
                 props.cities.length ? <Buscador navigation={props.navigation}/> :
                 <View style={styles.preloader}>

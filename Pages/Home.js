@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { StyleSheet, Text, View, Button, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
-import Header from '../Components/Header'
+import Header from '../components/Header'
 import {Icon} from 'react-native-elements'
 import Carousel, {ParallaxImage} from 'react-native-snap-carousel'
 
@@ -54,7 +54,9 @@ const Home = (props) => {
 
     return(        
         <View style={styles.container}>
-            <Header />
+            <Text onPress={() => props.navigation.navigate('signup')}>SignUp</Text>
+            <Text onPress={() => props.navigation.navigate('signin')}>Signin</Text>
+
             <ScrollView style={styles.containerScroll}>
                 <View style={styles.containerIconTextImage}>
                     <Image source={require('../assets/beach.jpg')} style={styles.picture}/>

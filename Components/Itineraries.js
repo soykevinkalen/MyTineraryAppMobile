@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import itinerariesActions from '../Redux/actions/itinerariesActions'
+import itinerariesActions from '../redux/actions/itinerariesActions'
 import { StyleSheet, Text, View, Image, TextInput, ImageBackground } from 'react-native';
-import Header from '../Components/Header'
+import Header from './Header'
 import { connect } from "react-redux"
 import LottieView from 'lottie-react-native';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -14,24 +14,27 @@ const Itineraries = (props) => {
         const cityRedux = props.citiesFilter.find(city => city._id  === props.route.params.id)
         setCity(cityRedux)
     }, [])
-
+    // console.log(props.navigation)
     return(        
         <View style={styles.container}>
-            <Header />
             <ImageBackground style={styles.fotoCiudad} source={{uri:`${city.path}`}}>
                 <View style={styles.containerText}>
                     <Text style={styles.text}>{city.city}</Text>
                 </View>
             </ImageBackground>
+            <ScrollView style={styles.itineraries}>
             {
                 props.itinerariesByCity.map(itinerary => <Itinerary key={itinerary._id} itinerary={itinerary}/>)
             }
-
+            </ScrollView>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
+    itineraries: {
+        height: "100%"
+    },
     containerText: {
         position:"absolute",
         width:"100%",
@@ -71,7 +74,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
         // flexDirection: 'row',
         alignItems:'center',
-        justifyContent: 'space-around'    
+        justifyContent: 'space-around',
+        height: "100%"    
     },
     nombreCiudad: {
         paddingBottom:20,

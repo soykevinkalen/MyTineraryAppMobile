@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, ScrollView, Image, TextInput, TouchableOpacity } from 'react-native';
 import { connect } from "react-redux"
-import citiesActions from '../Redux/actions/citiesActions'
+import citiesActions from '../redux/actions/citiesActions'
 
 const Buscador = (props) => {
     return(

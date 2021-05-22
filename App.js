@@ -3,17 +3,21 @@ import React from 'react';
 import { Provider } from 'react-redux'
 import { createStore, applyMiddleware } from 'redux';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
-import Header from './Components/Header';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import AppLoading from 'expo-app-loading';
 import { useFonts, VarelaRound_400Regular } from '@expo-google-fonts/varela-round';
 import Stack from './navigation/Stack'
+import Drawer from './navigation/Drawer'
+
 import { NavigationContainer } from '@react-navigation/native';
-import mainReducer from './Redux/reducers/mainReducer'
+import mainReducer from './redux/reducers/mainReducer'
 import thunk from 'redux-thunk'
+import {connect} from "react-redux"
+import authActions from './redux/actions/authActions'
 
 const store = createStore(mainReducer, applyMiddleware(thunk));
 
-export default function App() {
+export default function App(props) {
   let [fontsLoaded] = useFonts({
     VarelaRound_400Regular
   });
@@ -21,11 +25,28 @@ export default function App() {
   if (!fontsLoaded) {
     return <AppLoading />;
   }
+  const storage = async () => {
+    const user = await AsyncStorage.getItem('userLogged')
+    const token = await AsyncStorage.getItem('token')
+    if (!props.userLogged && token) {
+      const userData = JSON.parse(user)
+      const userForced = {
+        token: AsyncStorage.getItem('token'),
+        ...userData
+      }
+  
+      props.logInForced(userForced)
+    }
+  }
+  // console.log(AsyncStorage.getItem('token'))
+  storage()
+
   return (
     <Provider store={store}>
       <NavigationContainer>
         <StatusBar />
-        <Stack />
+        {/* <Stack /> */}
+        <Drawer />
       </NavigationContainer>
     </Provider>
   );
@@ -39,3 +60,15 @@ const styles = StyleSheet.create({
     // justifyContent: 'center',
   },
 });
+
+const mapStateToProps = state =>{
+  return{
+    userLogged: state.userLogged
+  }
+}
+
+const mapDispatchToProps = {
+  logInForced : authActions.logInForced
+}
+
+connect(mapStateToProps,mapDispatchToProps)
