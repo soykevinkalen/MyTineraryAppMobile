@@ -31,21 +31,19 @@ export default function App(props) {
     if (!props.userLogged && token) {
       const userData = JSON.parse(user)
       const userForced = {
-        token: AsyncStorage.getItem('token'),
+        token: token,
         ...userData
       }
-  
-      props.logInForced(userForced)
+      await props.logInForced(userForced)
     }
   }
-  // console.log(AsyncStorage.getItem('token'))
+
   storage()
 
   return (
     <Provider store={store}>
       <NavigationContainer>
         <StatusBar />
-        {/* <Stack /> */}
         <Drawer />
       </NavigationContainer>
     </Provider>

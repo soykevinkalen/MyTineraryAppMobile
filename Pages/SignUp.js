@@ -58,6 +58,7 @@ const SignUp = (props) => {
              }))
         }else{
             console.log('listo bro')
+            props.navigation.navigate('home')
             // toast.success(`Welcome ${userGen.firstName}`)
             // setTimeout(function(){ props.history.push('/') }, 5000);
             

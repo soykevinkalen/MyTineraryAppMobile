@@ -13,11 +13,19 @@ export const HomeStack = (props) => {
     return(
         <stack.Navigator screenOptions={{
             title: <Header navigation={props.navigation}/>,
-            headerStyle: { backgroundColor: 'black' }
+            headerStyle: { backgroundColor: 'black', width: "100%", height: 80 },
+            // headerTitleContainerStyle: {width: "100%", backgroundColor:'blue', alignItems:"flex-start"},
+
         }}>
-            <stack.Screen name="home" component={Home}/>             
-            <stack.Screen name="cities" component={Cities} />
-            <stack.Screen name="itineraries" component={Itineraries}/>             
+            <stack.Screen name="home" component={Home} options={{
+                headerTitleContainerStyle: {width: "100%", backgroundColor:'black', alignItems:"center", justifyContent:'space-around'}
+            }}/>             
+            <stack.Screen name="cities" component={Cities} options={{
+                headerTitleContainerStyle: {width: "100%", backgroundColor:'black', alignItems:"flex-start"}
+            }}/>
+            <stack.Screen name="itineraries" component={Itineraries} options={{
+                headerTitleContainerStyle: {width: "100%", backgroundColor:'black', alignItems:"flex-start"}
+            }}/>             
 
         </stack.Navigator>
     ) 
