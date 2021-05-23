@@ -37,7 +37,8 @@ const Header = (props) => {
 
 const styles = StyleSheet.create({
     name: {
-        textAlign: "center"
+        textAlign: "center",
+        color: "white"
     },
     imageName: {
         alignItems: "center",

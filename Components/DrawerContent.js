@@ -1,25 +1,22 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground, Text } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import {Icon} from 'react-native-elements'
+import { Title, Drawer, } from 'react-native-paper';
 import { connect } from "react-redux"
-import {
-    DrawerContentScrollView,
-    DrawerItem
-} from '@react-navigation/drawer';
+import { DrawerContentScrollView, DrawerItem } from '@react-navigation/drawer';
 import authActions from '../redux/actions/authActions'
 
-export const DrawerContent = (props) => {
-    console.log(props.user)
+const DrawerContent = (props) =>{
     return(
         <View style={styles.drawerContent}>
+            <View style={styles.userInfoSection}>
+                <ImageBackground style={styles.picUser} source={{uri: props.user ? props.user.userImage : 'https://i.ibb.co/VYzFrtX/usuario.png'}}>
+                </ImageBackground>
+                <Title style={styles.name}>{props.user ? props.user.firstName + " " + props.user.lastName : null}</Title>
+            </View>
             <DrawerContentScrollView {...props}>
                 <View style={styles.drawerContent}>
-                    <View style={styles.userInfoSection}>
-                    <ImageBackground style={styles.picUser} source={{uri: props.user ? props.user.userImage : 'https://i.ibb.co/VYzFrtX/usuario.png'}}>
-                    </ImageBackground>
-                    <Text style={styles.name}>{props.user ? props.user.firstName + " " + props.user.lastName : null}</Text>
-                    </View>
-                </View>
+                    <Drawer.Section>
                 <DrawerItem 
                     icon={({color, size}) => (
                         <Icon 
@@ -44,6 +41,8 @@ export const DrawerContent = (props) => {
                     label="Cities"
                     onPress={() => {props.navigation.navigate('cities')}}
                 />
+                </Drawer.Section>
+                <Drawer.Section>
                 {props.user ? <DrawerItem 
                     icon={({color, size}) => (
                         <Icon 
@@ -57,7 +56,7 @@ export const DrawerContent = (props) => {
                     onPress={() => {
                         props.logOutUser()
                         props.navigation.navigate('home')}}
-                />:<>
+                />:<View>
                 <DrawerItem 
                     icon={({color, size}) => (
                         <Icon
@@ -82,7 +81,10 @@ export const DrawerContent = (props) => {
                     label="Sign up"
                     onPress={() => {props.navigation.navigate('signup')}}
                 />
-                </>}
+                </View>}
+                </Drawer.Section>
+                </View>
+
             </DrawerContentScrollView>
         </View>
     )
@@ -94,7 +96,7 @@ const styles = StyleSheet.create({
       flex: 1,
     },
     userInfoSection: {
-
+        paddingLeft: 20
     },
     picUser: {
         width: 100,
@@ -102,16 +104,14 @@ const styles = StyleSheet.create({
     }
 })
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
     return {
         user: state.auth.userLogged
     }
 }
 
-const  mapDispatchToProps = {
+const mapDispatchToProps = {
     logOutUser: authActions.logOutUser
 }
 
-
-
-connect(mapStateToProps, mapDispatchToProps)(DrawerContent)
+export default connect(mapStateToProps, mapDispatchToProps)(DrawerContent)
