@@ -14,7 +14,6 @@ export const HomeStack = (props) => {
         <stack.Navigator screenOptions={{
             title: <Header navigation={props.navigation}/>,
             headerStyle: { backgroundColor: 'black', width: "100%", height: 80 },
-            // headerTitleContainerStyle: {width: "100%", backgroundColor:'blue', alignItems:"flex-start"},
 
         }}>
             <stack.Screen name="home" component={Home} options={{
@@ -35,10 +34,14 @@ export const CitiesStack = (props) => {
     return (
         <stack.Navigator screenOptions={{
             title: <Header navigation={props.navigation}/>,
-            headerStyle: { backgroundColor: 'black' }
+            headerStyle: { backgroundColor: 'black', width: "100%", height: 80 },
         }}>
-            <stack.Screen name="cities" component={Cities}/>
-            <stack.Screen name="itineraries" component={Itineraries}/>             
+            <stack.Screen name="cities" component={Cities} options={{
+                headerTitleContainerStyle: {width: "100%", backgroundColor:'black', alignItems:"center", justifyContent:'space-around'}
+            }}/>
+            <stack.Screen name="itineraries" component={Itineraries}  options={{
+                headerTitleContainerStyle: {width: "100%", backgroundColor:'black', alignItems:"flex-start"}
+            }}/>             
         </stack.Navigator>
     )
 }
@@ -47,9 +50,11 @@ export const SignInStack = (props) => {
     return (
         <stack.Navigator screenOptions={{
             title: <Header navigation={props.navigation}/>,
-            headerStyle: { backgroundColor: 'black' }
+            headerStyle: { backgroundColor: 'black', width: "100%", height: 80 },
         }}>
-            <stack.Screen name="signin" component={SignIn}/>            
+            <stack.Screen name="signin" component={SignIn} options={{
+                headerTitleContainerStyle: {width: "100%", backgroundColor:'black', alignItems:"center", justifyContent:'space-around'}
+            }}/>            
         </stack.Navigator>
     )
 }
@@ -58,9 +63,11 @@ export const SignUpStack = (props) => {
     return (
         <stack.Navigator screenOptions={{
             title: <Header navigation={props.navigation}/>,
-            headerStyle: { backgroundColor: 'black' }
+            headerStyle: { backgroundColor: 'black', width: "100%", height: 80 },
         }}>
-            <stack.Screen name="signup" component={SignUp}/>            
+            <stack.Screen name="signup" component={SignUp} options={{
+                headerTitleContainerStyle: {width: "100%", backgroundColor:'black', alignItems:"center", justifyContent:'space-around'}
+            }}/>            
         </stack.Navigator>
     )
 }

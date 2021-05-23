@@ -35,13 +35,15 @@ const SignIn = (props) => {
             // return toast.error('Fill in the fields')
             return false
         }
-        await props.logInUser(user)
-        // if(response){
-        //     toast.error(response)
-        // }else{
-        //     toast.success('Welcome')
-        //     setTimeout(function(){ props.history.push('/') }, 5000);       
-        // }
+        const response = await props.logInUser(user)
+        if(response){
+            // toast.error(response)
+            console.log(response)
+        }else{
+            props.navigation.navigate('home')
+            // toast.success('Welcome')
+            // setTimeout(function(){ props.history.push('/') }, 5000);       
+        }
     }
     // const responseGoogle = (response) => {
     //     if(response.profileObj.email){

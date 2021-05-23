@@ -54,8 +54,8 @@ const Home = (props) => {
 
     return(        
         <View style={styles.container}>
-            <Text onPress={() => props.navigation.navigate('signup')}>SignUp</Text>
-            <Text onPress={() => props.navigation.navigate('signin')}>Signin</Text>
+            {/* <Text onPress={() => props.navigation.navigate('signup')}>SignUp</Text>
+            <Text onPress={() => props.navigation.navigate('signin')}>Signin</Text> */}
 
             <ScrollView style={styles.containerScroll}>
                 <View style={styles.containerIconTextImage}>
