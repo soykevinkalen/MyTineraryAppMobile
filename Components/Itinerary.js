@@ -14,10 +14,6 @@ import {Icon} from 'react-native-elements'
 
 const Itinerary = (props) => {
     const [isOpen, setIsOpen] = useState(false)
-    const [show, setShow] = useState(false)
-    const [hashtag, setHashtag] = useState('')
-    const [itinerariesCoincidencies, setItinerariesCoincidencies] = useState([])
-    const [itineraries, setItineraries] = useState([])
     const [activities, setActivities] = useState([])
     const [likes, setLikes] = useState(false)
     const [newComment, setNewComment] = useState('')
@@ -34,21 +30,7 @@ const Itinerary = (props) => {
             }
         }
     },[props])
-    let coincidencies = []
-    const getItinerariesHashtag = (e) =>{
-        itineraries.map(itinerary =>{
-            itinerary.hashtag.map(hashtag => {
-                if(hashtag === e.target.value){
-                    coincidencies = [...coincidencies, itinerary]
-                }
-                return null
-            })
-            return null
-        })
-        setItinerariesCoincidencies(coincidencies)
-        setShow(true)
-        setHashtag(e.target.value)
-    }
+    
     const view = async () => {
         setIsOpen(!isOpen)
         if(!isOpen){
@@ -65,11 +47,11 @@ const Itinerary = (props) => {
         }
     }
    
-    const sendValues = async (itineraryId) => {
+    const sendValues = async () => {
         if(props.user){
             setLoading(false)
             if(newComment.trim() !== ""){
-                const itinerary = await props.putComments(props.user,itineraryId, newComment)
+                const itinerary = await props.putComments(props.user,props.itinerary._id, newComment)
                 setAllComments(itinerary.comments)
                 setNewComment('')
                 setLoading(true)
@@ -88,66 +70,77 @@ const Itinerary = (props) => {
 
     return(        
         <View style={styles.container}>
-            <Text>{props.itinerary.title}</Text>
+            <Text style={[styles.text,styles.title,styles.commentTitle]}>{props.itinerary.title}</Text>
             <ImageBackground style={styles.picUser} source={{uri:`${props.itinerary.authorImage}`}}></ImageBackground>
-            <Text>{props.itinerary.authorName}</Text>
-            <View>
-                <Text>
+            <Text style={styles.text}>{props.itinerary.authorName}</Text>
+            <View style={styles.caja}>
+                
+
+                <View style={styles.valoration}>
                     <Icon 
                         type='material-community'
                         name='heart-outline'
                         size={30}
-                        color = {`${likes ? 'red' : 'white' }`} 
-                        onPress = {() => loading ? like : null}           
-                    />
-                    {props.itinerary.usersLiked.length}
-                </Text>
-                <Text>
-                    Price:
-                    {[...Array(props.itinerary.price)].map((p,i) => <Icon 
-                                                                        type='material-community'
-                                                                        name='cash'
-                                                                        size={30}
-                                                                        color = 'green' 
-                                                                        key={i}  
-                                                                    />)}
-                </Text>
-                <Text>
+                        color = {likes ? 'red' : ''} 
+                        onPress = {() => loading ? like() : null}           
+                        />
+                    <Text style={styles.text}>
+                        {props.itinerary.usersLiked.length}
+                    </Text>
+                </View>
+                <View style={styles.valoration}>
+                    <Text style={styles.text}>
+                        Price:
+                    </Text>
+                        {[...Array(props.itinerary.price)].map((p,i) => <Icon 
+                                                                            type='material-community'
+                                                                            name='cash'
+                                                                            size={30}
+                                                                            color = 'green' 
+                                                                            key={i}  
+                                                                            />)}
+                </View>
+                
+
+                <View style={styles.valoration}>
+
                     <Icon 
                         type='material-community'
                         name='timer'
                         size={30}
                         color = 'blue'           
-                    />
-                     {props.itinerary.duration} hours
-                </Text>
+                        />
+                    <Text style={styles.text}>
+                        {props.itinerary.duration} hours
+                    </Text>
+                </View>
                 {/* <div><FavoriteIcon className='curser' style={{color:`${likes ? 'red' : 'white' }`}} onClick={loading ? like : null}/> {props.itinerary.usersLiked.length} </div>
                 <div> <span>Price: </span>{[...Array(props.itinerary.price)].map((p,i) => <LocalAtmIcon className="diner" key={i}/>)}</div>
                 <div><WatchLaterIcon className="watch"/> {props.itinerary.duration} <span>hours</span></div> */}
             </View>
-            <View>
+            <View style={styles.hashtagContainer}>
                 {
-                    props.itinerary.hashtag.map(hashtag => <Text key={hashtag}>#{hashtag}</Text>)
+                    props.itinerary.hashtag.map(hashtag => <Text style={[styles.text,styles.hash]} key={hashtag}>#{hashtag}</Text>)
                 }
             </View>
             
-            {isOpen && (<View>
-                <View>
-                    <Text>Activities</Text>
+            {isOpen && (<View style={{width: '100%'}}>
+                <View style={styles.activityContainer}>
+                    <Text style={[styles.text,styles.title]}>Activities</Text>
                     {
                         activities.map(activity => {
                             return(
                             <ImageBackground style={styles.picActivity} key={activity.title} source={{uri:`${activity.image}`}}>
-                                <View>
-                                    <Text>{activity.title}</Text>
+                                <View style={{alignItems:'center', width:'100%',backgroundColor:"#ffffffaa"}}>
+                                    <Text style={[styles.text,styles.activityTitle]}>{activity.title}</Text>
                                 </View>
                             </ImageBackground>)
                         })
                     }
                 </View>
-                <View>
-                    <Text>Comments</Text>
-                    <View>
+                <ImageBackground source={{uri:"https://i.ibb.co/cQLgmDh/northern-lights-1197755-1920.jpg"}} style={styles.commentContainer}>
+                    <Text style={[styles.text,styles.title,styles.commentTitle]}>Comments</Text>
+                    <ScrollView>
                         {allComments.length ? 
                             allComments.map(comment => {
                                 return(
@@ -158,24 +151,81 @@ const Itinerary = (props) => {
                                 <Text>Be the first to comment</Text>
                             </View> 
                         }
-                    </View>
-                {viewItinerary && <View>     
-                    <TextInput />
-                    <Text>Send</Text>
+                    </ScrollView>
+                {viewItinerary && <View style={styles.inputButton}>     
+                    <TextInput 
+                        placeholder="Write a comment"
+                        placeholderTextColor = 'white'
+                        color = 'white'
+                        style = {styles.input}
+                        onChangeText={(e) => setNewComment(e)}
+                        value={newComment}
+                    />
+                    <Text style={[styles.button,styles.send]} onPress={()=> loading ? sendValues() : null}>Send</Text>
                     </View>}
-                </View>
+                </ImageBackground>
             </View>)}
-            <Text onPress={()=> view()}>{isOpen ? 'View Less' : 'View More'}</Text>
-            
+            <Text style={styles.button} onPress={()=> view()}>{isOpen ? 'View Less' : 'View More'}</Text>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    
+    commentTitle:{
+        width: "100%",
+        backgroundColor: '#aeafafab',
+        textAlign: 'center'
+    },
+    commentContainer:{
+        width: '100%',
+        alignItems:'center',
+        justifyContent: 'space-around',
+    },
+    inputButton:{
+        flexDirection:'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    send:{
+        width: '20%',
+        height: 30,
+        marginLeft: 10
+    },
+    activityTitle:{
+        color: 'black'
+    },
+    activityContainer:{
+        width: '100%'
+    },
+    title:{
+        marginVertical: 5
+    },
+    hashtagContainer:{
+        flexDirection:'row',
+        flexWrap:'wrap',
+        marginBottom: 10
+    },
+    button:{
+        fontSize: 20,
+        color:"white",
+        backgroundColor: "#141823",
+        textAlign: "center",
+        borderRadius: 20,
+        width:"50%",
+        marginVertical: 10
+    },
+    valoration:{
+        flexDirection:'row',
+        marginTop: 5,
+    },
+    hash: {
+        color:'blue',
+        marginHorizontal: 5,
+    },
     picActivity: {
-        width: 100,
-        height: 100
+        width: '100%',
+        height: 200,
+        marginBottom: 10
     },
     picUser: {
         width: 100,
@@ -192,6 +242,7 @@ const styles = StyleSheet.create({
         color: 'white',
         // fontFamily:'VarelaRound_400Regular',
         fontSize: 20,
+        textAlign: 'center',
         // marginLeft: 10,
         // position: "absolute"
     },
@@ -220,7 +271,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
         // flexDirection: 'row',
         alignItems:'center',
-        justifyContent: 'space-around'    
+        justifyContent: 'space-around',
+        // marginTop: 10    
     },
     nombreCiudad: {
         paddingBottom:20,

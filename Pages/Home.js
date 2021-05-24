@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { StyleSheet, Text, View, Button, Image, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, ImageBackground, ScrollView, Dimensions, TouchableOpacity } from 'react-native';
 import Header from '../components/Header'
 import {Icon} from 'react-native-elements'
 import Carousel, {ParallaxImage} from 'react-native-snap-carousel'
@@ -54,34 +54,33 @@ const Home = (props) => {
 
     return(        
         <View style={styles.container}>
-            {/* <Text onPress={() => props.navigation.navigate('signup')}>SignUp</Text>
-            <Text onPress={() => props.navigation.navigate('signin')}>Signin</Text> */}
-
             <ScrollView style={styles.containerScroll}>
-                <View style={styles.containerIconTextImage}>
-                    <Image source={require('../assets/beach.jpg')} style={styles.picture}/>
+                {/* <View style={styles.containerIconTextImage}> */}
+                <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/Jrn97Wv/beach.jpg"}}> 
                     <View style={styles.containerIconText}>
                         <View style={styles.containerSub}>
                             <Icon 
                                 type='material-community'
                                 name='airplane-takeoff'
                                 size={80}
-                                color = '#005ca2'            
+                                color = '#7198b5'            
                             />
                             <Text style={styles.text}>MyTinerary</Text>
 
                         </View>
                         <Text style={styles.subText}>Find your perfect trip, designed by insiders who know and love their cities!</Text>
                     </View>
-                </View>
+                </ImageBackground>
+                {/* </View> */}
                 
-                <View style={styles.containerCallToAction}>
-                    <Image source={require('../assets/calltoaction.jpg')} style={styles.callToActionPic}/>
+                {/* <View style={styles.containerCallToAction}> */}
+                <ImageBackground source={{uri:"https://i.ibb.co/cQLgmDh/northern-lights-1197755-1920.jpg"}} style={styles.callToActionPic}>
                     <View style={styles.textButtonContainer}>
                         <Text style={styles.textCallToAction}>Let your adventure begin!</Text>
                         <Text style={styles.buttonCallToAction} title="Cities" onPress={() => props.navigation.navigate('cities')}>Cities</Text>
                     </View>
-                </View>
+                </ImageBackground>
+                {/* </View> */}
 
                 <View style={styles.containerCarrousel}>
                     <TouchableOpacity onPress={goForward}>
@@ -106,13 +105,22 @@ const Home = (props) => {
 }
 
 const styles = StyleSheet.create({
+    background: {
+        height:600,
+        alignItems: 'center',
+        width: "100%",
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 10
+    },
     title:{
         position: "absolute",
         width: "100%",
         textAlign: "center",
         top: "50%",
-        backgroundColor: "#aeafafab",
-        fontSize: 20
+        backgroundColor: "#ffffffaa",
+        fontSize: 20,
+        color:"black"
     },
     containerCarrousel: {
         flex: 1,
@@ -132,40 +140,43 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     buttonCallToAction:{
-        fontSize: 15,
-        color:"#141823",
+        fontSize: 35,
+        color:"white",
         backgroundColor: "#141823",
         textAlign: "center",
-        borderRadius: 20
+        borderRadius: 20,
+        width:"50%"
     },
     textCallToAction:{
         backgroundColor: "#aeafafab",
-        color: "#000",
-        fontSize: 15,
+        color: "#fff",
+        fontSize: 30,
         paddingHorizontal: 5,
-        marginBottom: 5
+        marginBottom: 15,
+        width: "100%",
+        textAlign: "center"
+
     },
     textButtonContainer:{
         color: "#000",
         position:"absolute",
-        marginLeft: 15
+        // marginLeft: 15,
+        width: "100%",
+        alignItems: 'center',
+        justifyContent: 'center',
+
         
-    },
-    containerCallToAction:{
-        marginVertical: 10,
-        justifyContent: "center"
     },
     callToActionPic:{
         width: "100%",
-        height: 160
+        height: 360,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     subText: {
         padding:5,
-        textAlign:"center"
-    },
-    containerIconTextImage:{
-        alignItems: 'center',
-        justifyContent: 'center'
+        textAlign:"center",
+        color: "white"
     },
     containerScroll: {
         height: '100%',
@@ -174,7 +185,7 @@ const styles = StyleSheet.create({
     container: {
         flex:1,
         height: '100%',
-        marginBottom: 10    
+        backgroundColor: "black",    
     },
     text: {
         color: 'white',

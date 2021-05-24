@@ -29,13 +29,16 @@ const Comment = (props) => {
             setClose(!close)
         }
     }
-    
+    const closeButton = () => {
+        setClose(!close)
+        setView(!view)
+    }
     return(        
         <View style={styles.container}>
-            <View>
-                <View>
-                    <ImageBackground style={styles.picUser} source={{uri:`${props.comment.userId.userImage}`}}></ImageBackground>
-                    <Text>{props.comment.userId.firstName + " " + props.comment.userId.lastName }</Text>
+            <View style={styles.imageText}>
+                <View style={styles.imageText}>
+                    <Image style={styles.picUser} source={{uri:`${props.comment.userId.userImage}`}}></Image>
+                    <Text style={styles.text}>{props.comment.userId.firstName + " " + props.comment.userId.lastName }</Text>
                 </View>
                 
             {
@@ -46,22 +49,22 @@ const Comment = (props) => {
                         name='close-box'
                         size={30}
                         color = 'blue'
-                        onPress={()=> setClose(!close)}           
+                        onPress={()=> closeButton()}           
                     /> : 
-                <View> 
+                <View style={styles.imageText}> 
                 <Icon 
                         type='material-community'
                         name='pencil-outline'
                         size={30}
                         color = 'blue'
-                        onPress={() => edit(props.comment)}           
+                        onPress = {()=> edit(props.comment)}           
                     />
                 <Icon 
                         type='material-community'
                         name='delete'
                         size={30}
                         color = 'blue'
-                        onPress = {() => props.deleteComment(comment)}           
+                        onPress = {() => props.deleteComment(props.comment)}           
                     />
                 </View>}
                 </> : null
@@ -69,11 +72,19 @@ const Comment = (props) => {
 
             </View>
             {!view && 
-            <Text >{props.comment.comment}</Text>}
+            <Text style={styles.text}>{props.comment.comment}</Text>}
             {view && (
-                <View className='commentsEdit'>
-                    <TextInput onKeyDown={enter} type="text" placeholder="Write your comment here"  onChange={(e)=>setUpdatedComment(e.target.value)} value={updatedComment}/>
-                    <Text onClick={send}>Send</Text>
+                <View  style={styles.inputButton}>
+                    {/* <TextInput onKeyDown={enter} type="text" placeholder="Write your comment here"  onChange={(e)=>setUpdatedComment(e.target.value)} value={updatedComment}/> */}
+                    <TextInput 
+                        placeholder="Write a comment"
+                        placeholderTextColor = 'white'
+                        color = 'white'
+                        style = {styles.input}
+                        onChangeText={(e) => setUpdatedComment(e)}
+                        value={updatedComment}
+                    />
+                    <Text style={[styles.button,styles.send]} onPress={() => send()}>Send</Text>
                 </View>
             )}
         </View>
@@ -81,9 +92,33 @@ const Comment = (props) => {
 }
 
 const styles = StyleSheet.create({
+    button:{
+        fontSize: 20,
+        color:"white",
+        backgroundColor: "#141823",
+        textAlign: "center",
+        borderRadius: 20,
+        width:"50%"
+    },
+    inputButton:{
+        flexDirection:'row',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    send:{
+        width: '20%',
+        height: 30,
+        marginLeft: 10
+    },
+    imageText:{
+        flexDirection:'row',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     picUser: {
         width: 50,
-        height: 50
+        height: 50,
+        borderRadius: 800
     },
     containerText: {
         position:"absolute",
@@ -98,6 +133,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         // marginLeft: 10,
         // position: "absolute"
+        marginHorizontal: 5
     },
     preloader:{
         // marginTop: 10,
@@ -124,7 +160,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#000',
         // flexDirection: 'row',
         alignItems:'center',
-        justifyContent: 'space-around'    
+        justifyContent: 'space-around',
+        borderColor: 'white',
+        paddingVertical: 5,
+        borderRadius: 10,
+        margin: 5    
     },
     nombreCiudad: {
         paddingBottom:20,

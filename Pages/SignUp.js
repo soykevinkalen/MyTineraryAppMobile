@@ -70,7 +70,7 @@ const SignUp = (props) => {
     // }
     return(
         <>
-            <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/Jrn97Wv/beach.jpg"}}>
+            <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/cQLgmDh/northern-lights-1197755-1920.jpg"}}>
                 {/* <div className="form"> */}
                     {/* <FlightTakeoffIcon className='logoForm'/> */}
                     <Text style={styles.texto}>Sign up!</Text>
@@ -130,7 +130,7 @@ const SignUp = (props) => {
                         {mistakes.userImage ? <Text>{mistakes.userImage}</Text> : null} 
 
                         <View style={[styles.input, styles.textArea]}>
-                            <SelectPicker default='Choose a country' label ='country' placeholder='Choose your country' placeholderStyle={{color:'#9b9b9b'}} onValueChange={(value) => readInputUser(value,"country")}  >
+                            <SelectPicker default='Choose a country' label ='country' placeholder='Choose your country' placeholderStyle={{color:'white'}} onValueChange={(value) => readInputUser(value,"country")}  >
                             {countries.map((country, index) =>{
                                 return(
                                 <SelectPicker.Item label ={country.name} value={country.name} key={country.name} >{country.name} </SelectPicker.Item>
@@ -148,8 +148,9 @@ const SignUp = (props) => {
                         <TouchableOpacity
                             style={styles.boton}
                             onPress={sendValueUser}>
-                            <Text>Sign up!</Text>
+                            <Text style={{color:'white'}}>Sign up!</Text>
                         </TouchableOpacity>
+                        <Text style={styles.text}>Already have an account? <Text style={{fontWeight: 'bold'}} onPress={()=>props.navigation.navigate('signin')}>Sign in here!</Text></Text>
                         {/* <button className="boton" onClick={sendValueUser}>Sign up!</button> */}
                         {/* <div className="input">
                             <h6>Already have an account?  <NavLink to='/signin' className="navLink sign">Sign in here!</NavLink></h6>
@@ -178,42 +179,55 @@ const SignUp = (props) => {
 const styles = StyleSheet.create({
     textArea:{ 
         height: 40,
-        width:"80%",
+        width:"95%",
         paddingLeft:10,
+        color: 'white'
     },
     background: {
         flex: 1,
         alignItems: 'center',
-        width: "100%"
-    },
-    texto: {
-        fontSize: 30,
+        width: "100%",
+        justifyContent: 'center',
+      },
+      text:{
+        fontSize: 20,
         color: 'white',
-        textDecorationLine: 'underline',
-        marginTop: 10,
-        fontWeight: 'bold'
-    },
-    formulario: {
-        width: '100%',
-        alignItems: 'center'
-
-    },
-    input: {
-        width: '60%',
-        height: 60,
-        backgroundColor: 'red',
-        textAlign: 'center',
-        fontSize: 20,
-        marginTop: 10,
-        textDecorationLine: 'none'
-    },
-    boton: {
-        backgroundColor: 'yellow',
-        paddingVertical: 5,
-        paddingHorizontal: 30,
-        fontSize: 20,
-        marginTop: 30
-    }
+        marginTop: 10
+      },
+      texto: {
+          fontSize: 30,
+          color: 'white',
+          // textDecorationLine: 'underline',
+          marginTop: 10,
+          fontWeight: 'bold',
+          backgroundColor: "#aeafafab",
+  
+      },
+      formulario: {
+          width: '100%',
+          alignItems: 'center'
+      },
+      input: {
+          width: '95%',
+          height: 60,
+          borderBottomWidth: 5,
+          borderBottomColor: 'black',
+          // backgroundColor: 'red',
+          textAlign: 'center',
+          fontSize: 20,
+          marginTop: 10,
+          textDecorationLine: 'none',
+          backgroundColor: "#aeafafab",
+  
+      },
+      boton: {
+          backgroundColor: 'black',
+          paddingVertical: 5,
+          paddingHorizontal: 30,
+          fontSize: 20,
+          marginTop: 30,
+          color: 'white'
+      }
   });
 
 const mapDispatchToProps = {

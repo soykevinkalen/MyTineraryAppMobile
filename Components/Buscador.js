@@ -12,6 +12,7 @@ const Buscador = (props) => {
                     color = 'white'
                     style = {styles.input}
                     onChangeText={(e) => props.filtro(e)}
+                    textDecorationLine='none'
                     />
             <ScrollView>
                     {
@@ -43,14 +44,24 @@ const styles = StyleSheet.create({
     input: {
         width: '60%',
         height: 60,
-        backgroundColor: 'black',
+        backgroundColor: '#424242',
         textAlign: 'center',
         fontSize: 20,
         marginTop: 10,
-        marginBottom: 10,
-        textDecorationLine: 'none',
-        borderRadius: 20,
-        borderColor: "red"
+        borderRadius:45,
+        textDecorationLine: 'none'
+        // color:'black',
+        // borderColor:'white',
+        // width: '60%',
+        // height: 60,
+        // backgroundColor: 'black',
+        // textAlign: 'center',
+        // fontSize: 20,
+        // marginTop: 10,
+        // marginBottom: 10,
+        // textDecorationLine: 'none',
+        // borderRadius: 20,
+        // borderColor: "red"
     },
     caja:{
         alignItems: "center",

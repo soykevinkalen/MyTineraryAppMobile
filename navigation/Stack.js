@@ -14,9 +14,10 @@ export const HomeStack = (props) => {
         <stack.Navigator screenOptions={{
             title: <Header navigation={props.navigation}/>,
             headerStyle: { backgroundColor: 'black', height: 80 },
+            headerTintColor: 'white'
         }}>
             <stack.Screen name="home" component={Home} options={{
-                headerTitleContainerStyle: {width: "100%", alignItems:"center", justifyContent:'space-around'}
+                headerTitleContainerStyle: {width: "100%", alignItems:"center"},
             }}/>             
             <stack.Screen name="cities" component={Cities} options={{
                 headerTitleContainerStyle: {width: "100%", alignItems:"flex-start"}
@@ -34,6 +35,7 @@ export const CitiesStack = (props) => {
         <stack.Navigator screenOptions={{
             title: <Header navigation={props.navigation}/>,
             headerStyle: { backgroundColor: 'black', height: 80 },
+            headerTintColor: 'white'
         }}>
             <stack.Screen name="cities" component={Cities} options={{
                 headerTitleContainerStyle: {width: "100%", alignItems:"center", justifyContent:'space-around'}
@@ -50,6 +52,7 @@ export const SignInStack = (props) => {
         <stack.Navigator screenOptions={{
             title: <Header navigation={props.navigation}/>,
             headerStyle: { backgroundColor: 'black', height: 80 },
+            headerTintColor: 'white'
         }}>
             <stack.Screen name="signin" component={SignIn} options={{
                 headerTitleContainerStyle: {width: "100%", alignItems:"center", justifyContent:'space-around'}
@@ -63,6 +66,7 @@ export const SignUpStack = (props) => {
         <stack.Navigator screenOptions={{
             title: <Header navigation={props.navigation}/>,
             headerStyle: { backgroundColor: 'black', height: 80 },
+            headerTintColor: 'white'
         }}>
             <stack.Screen name="signup" component={SignUp} options={{
                 headerTitleContainerStyle: {width: "100%", alignItems:"center", justifyContent:'space-around'}

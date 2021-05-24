@@ -53,10 +53,10 @@ const SignIn = (props) => {
 
     return(
         <>
-            <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/Jrn97Wv/beach.jpg"}}>
+            <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/cQLgmDh/northern-lights-1197755-1920.jpg"}}>
                 {/* <div> */}
                     {/* <FlightTakeoffIcon className='logoForm'/> */}
-                    <Text style={styles.texto}>Sign in!</Text>
+                    <Text style={styles.texto}>Sign in</Text>
                     <View style={styles.formulario}>
                         <TextInput 
                             placeholder="Please, enter your email adress"
@@ -82,7 +82,7 @@ const SignIn = (props) => {
                         <TouchableOpacity
                             style={styles.boton}
                             onPress={sendValueUser}>
-                            <Text>Sign in!</Text>
+                            <Text style={{color:'white'}}>Sign in!</Text>
                         </TouchableOpacity>
                         {/* <button className="boton" onClick={sendValueUser}>Sign in!</button> */}
                         {/* <GoogleLogin
@@ -97,6 +97,7 @@ const SignIn = (props) => {
                         /> */}
                     </View>
                     {/* <ToastContainer /> */}
+                    <Text style={styles.text}>Don't have an account? <Text style={{fontWeight: 'bold'}} onPress={()=>props.navigation.navigate('signup')}>Sign up!</Text></Text>
                     {/* <p className='account'>Don't have an account?  <NavLink to='/signup' className="navLink sign">Sign up here!</NavLink></p> */}
                 {/* </div> */}
             </ImageBackground>
@@ -106,38 +107,52 @@ const SignIn = (props) => {
 }
 
 const styles = StyleSheet.create({
+    text:{
+        fontSize: 20,
+        color: 'white',
+        marginTop: 30,
+        backgroundColor: "#aeafafab",
+
+    },
     background: {
       flex: 1,
       alignItems: 'center',
-      width: "100%"
+      width: "100%",
+      justifyContent: 'center',
     },
     texto: {
         fontSize: 30,
         color: 'white',
-        textDecorationLine: 'underline',
+        // textDecorationLine: 'underline',
         marginTop: 10,
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        backgroundColor: "#aeafafab",
+
     },
     formulario: {
         width: '100%',
         alignItems: 'center'
-
     },
     input: {
-        width: '60%',
+        width: '80%',
         height: 60,
-        backgroundColor: 'red',
+        borderBottomWidth: 5,
+        borderBottomColor: 'black',
+        // backgroundColor: 'red',
         textAlign: 'center',
         fontSize: 20,
         marginTop: 10,
-        textDecorationLine: 'none'
+        textDecorationLine: 'none',
+        backgroundColor: "#aeafafab",
+
     },
     boton: {
-        backgroundColor: 'yellow',
+        backgroundColor: 'black',
         paddingVertical: 5,
         paddingHorizontal: 30,
         fontSize: 20,
-        marginTop: 30
+        marginTop: 30,
+        color: 'white'
     }
   });
 
