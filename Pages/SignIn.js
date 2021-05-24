@@ -1,9 +1,9 @@
 // import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff'
 // import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined'
 // import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
-import Header from '../components/Header'
+import Toast, {DURATION} from 'react-native-easy-toast'
 // import Footer from '../components/Footer'
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState } from 'react';
 
 import {connect} from "react-redux"
 import authActions from '../redux/actions/authActions'
@@ -13,7 +13,7 @@ import authActions from '../redux/actions/authActions'
 // import 'react-toastify/dist/ReactToastify.css'
 // import {NavLink} from 'react-router-dom'
 // import GoogleButton from 'react-google-button'
-import {StyleSheet, ImageBackground, Text, View, TextInput, TouchableOpacity } from 'react-native'
+import {StyleSheet, ImageBackground, Text, View, TextInput, TouchableOpacity, ToastAndroid } from 'react-native'
 
 const SignIn = (props) => {
     const [user, setUser] = useState({email: '', password: ''})
@@ -33,16 +33,48 @@ const SignIn = (props) => {
         // let userGen = e ? user : googleUser
         if(Object.values(user).some(value => value === "")){
             // return toast.error('Fill in the fields')
-            return false
-        }
-        const response = await props.logInUser(user)
-        if(response){
-            // toast.error(response)
-            console.log(response)
+            // Toast.show({
+            //     type: 'error',
+            //     position: 'top',
+            //     text1: 'Fill in the fields',
+            //     visibilityTime: 3000,
+            //     autoHide: true
+            // })
+            // return <Toast ref={(ref) => Toast.setRef(ref)} />
+            ToastAndroid.showWithGravityAndOffset(
+                "Fill in the fields",
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                50
+            );
+            
         }else{
-            props.navigation.navigate('home')
-            // toast.success('Welcome')
-            // setTimeout(function(){ props.history.push('/') }, 5000);       
+            const response = await props.logInUser(user)
+            if(response){
+                // toast.error(response)
+                ToastAndroid.showWithGravityAndOffset(
+                    response,
+                    ToastAndroid.SHORT,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    50
+                );
+                console.log(response)
+            }else{
+                setUser({email: '', password: ''})
+                // const message = 'Welcome ' + props.user.firstName + " " + props.user.lastName
+                ToastAndroid.showWithGravityAndOffset(
+                    "Welcome",
+                    ToastAndroid.SHORT,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    50
+                );
+                props.navigation.navigate('home')
+                // toast.success('Welcome')
+                // setTimeout(function(){ props.navigation.navigate('home') }, 3000);       
+            }
         }
     }
     // const responseGoogle = (response) => {
@@ -64,15 +96,22 @@ const SignIn = (props) => {
                             color = 'white'
                             style = {styles.input}
                             onChangeText={(e) => readInputUser(e, 'email')}
+                            value={user.email}
+                            keyboardType='email-address'
                         />
                         {/* <input type="text" placeholder="Please, enter your email adress"
                         onChange={readInputUser} value={user.email} name="email" /> */}
                         <TextInput 
+                            secureTextEntry={true}
                             placeholder="Please, enter your password"
                             placeholderTextColor = 'white'
                             color = 'white'
                             style = {styles.input}
                             onChangeText={(e) => readInputUser(e, 'password')}
+                            value={user.password}
+                            keyboardType='visible-password'
+                            textContentType='password'
+                            
                         />
                         {/* <div> */}
                             {/* <input type= "password" eye ? "text" : "password"  placeholder="Please, enter your password" */}
@@ -84,24 +123,10 @@ const SignIn = (props) => {
                             onPress={sendValueUser}>
                             <Text style={{color:'white'}}>Sign in!</Text>
                         </TouchableOpacity>
-                        {/* <button className="boton" onClick={sendValueUser}>Sign in!</button> */}
-                        {/* <GoogleLogin
-                            clientId="974935643152-dc0ocnkdohrlv5gug0tjbf6r9t32smcb.apps.googleusercontent.com"
-                            render={renderProps => (
-                                <GoogleButton className='btn-google' onClick={renderProps.onClick} disabled={renderProps.disabled}>Sign in with Google</GoogleButton>
-                            )}
-                            buttonText="Sign in with google"
-                            onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
-                            cookiePolicy={'single_host_origin'}
-                        /> */}
                     </View>
-                    {/* <ToastContainer /> */}
                     <Text style={styles.text}>Don't have an account? <Text style={{fontWeight: 'bold'}} onPress={()=>props.navigation.navigate('signup')}>Sign up!</Text></Text>
-                    {/* <p className='account'>Don't have an account?  <NavLink to='/signup' className="navLink sign">Sign up here!</NavLink></p> */}
-                {/* </div> */}
+                    
             </ImageBackground>
-            {/* <Footer /> */}
         </>
     )
 }
@@ -123,11 +148,9 @@ const styles = StyleSheet.create({
     texto: {
         fontSize: 30,
         color: 'white',
-        // textDecorationLine: 'underline',
         marginTop: 10,
         fontWeight: 'bold',
         backgroundColor: "#aeafafab",
-
     },
     formulario: {
         width: '100%',
@@ -138,13 +161,11 @@ const styles = StyleSheet.create({
         height: 60,
         borderBottomWidth: 5,
         borderBottomColor: 'black',
-        // backgroundColor: 'red',
         textAlign: 'center',
         fontSize: 20,
         marginTop: 10,
         textDecorationLine: 'none',
         backgroundColor: "#aeafafab",
-
     },
     boton: {
         backgroundColor: 'black',
@@ -154,10 +175,15 @@ const styles = StyleSheet.create({
         marginTop: 30,
         color: 'white'
     }
-  });
+});
 
+const mapStateToProps = (state) => {
+    return {
+        user: state.auth.userLogged
+    }
+}
 const mapDispatchToProps = {
     logInUser: authActions.logInUser 
 }
 
-export default connect(null ,mapDispatchToProps)(SignIn)
+export default connect(mapStateToProps ,mapDispatchToProps)(SignIn)
