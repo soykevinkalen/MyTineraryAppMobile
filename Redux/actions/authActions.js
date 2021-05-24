@@ -62,7 +62,7 @@ const authActions = {
                 }})
             } catch(error) {
                 console.log(error)
-                toast.error('Ops... An error occurred, contact the administrator')  
+                // toast.error('Ops... An error occurred, contact the administrator')  
             }
             
         }

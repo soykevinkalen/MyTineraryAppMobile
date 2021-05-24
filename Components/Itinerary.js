@@ -97,7 +97,7 @@ const Itinerary = (props) => {
                         type='material-community'
                         name='heart-outline'
                         size={30}
-                        color = {likes ? 'red' : ''} 
+                        color = {likes ? 'red' : 'black'} 
                         onPress = {() => loading ? like() : null}           
                         />
                     <Text style={styles.text}>
@@ -124,7 +124,7 @@ const Itinerary = (props) => {
                         type='material-community'
                         name='timer'
                         size={30}
-                        color = '#113251'           
+                        color = 'rgb(0,113,178)'           
                         />
                     <Text style={styles.text}>
                         {props.itinerary.duration} hours
@@ -190,7 +190,7 @@ const Itinerary = (props) => {
 const styles = StyleSheet.create({
     commentTitle:{
         width: "100%",
-        backgroundColor: '#aeafafab',
+        backgroundColor: 'rgba(16,16,16,0.5)',
         textAlign: 'center'
     },
     commentContainer:{
@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: '100%',
-        backgroundColor: '#a1a1a1',
+        backgroundColor: 'rgba(60,42,116,0.7)',
         // flexDirection: 'row',
         alignItems:'center',
         justifyContent: 'space-around',

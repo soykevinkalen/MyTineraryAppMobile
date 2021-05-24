@@ -4,7 +4,6 @@ import {Icon} from 'react-native-elements'
 import { connect } from "react-redux"
 
 const Header = (props) => {
-    console.log(props.userLogged)
     return(        
         <View style={styles.container}>
             <View style={styles.icontitle}>

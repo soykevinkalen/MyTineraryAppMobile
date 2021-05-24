@@ -56,7 +56,7 @@ const Home = (props) => {
         <View style={styles.container}>
             <ScrollView style={styles.containerScroll}>
                 {/* <View style={styles.containerIconTextImage}> */}
-                <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/Jrn97Wv/beach.jpg"}}> 
+                <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/5nRR51M/sunset-690742-1920.jpg"}}> 
                     <View style={styles.containerIconText}>
                         <View style={styles.containerSub}>
                             <Icon 
@@ -118,9 +118,9 @@ const styles = StyleSheet.create({
         width: "100%",
         textAlign: "center",
         top: "50%",
-        backgroundColor: "#ffffffaa",
+        backgroundColor: "rgba(16,16,16,0.5)",
         fontSize: 20,
-        color:"black"
+        color:"white"
     },
     containerCarrousel: {
         flex: 1,
@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
         width:"50%"
     },
     textCallToAction:{
-        backgroundColor: "#aeafafab",
+        backgroundColor: "rgba(16,16,16,0.5)",
         color: "#fff",
         fontSize: 30,
         paddingHorizontal: 5,
@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     containerIconText: {
         position:"absolute",
         width:"100%",
-        backgroundColor: "#aeafafab",
+        backgroundColor: "rgba(16,16,16,0.5)",
         justifyContent: "center",
         alignItems: "center",
     },

@@ -92,6 +92,7 @@ const DrawerContent = (props) =>{
 }
 
 const styles = StyleSheet.create({
+    
     drawerContent: {
       flex: 1,
     },

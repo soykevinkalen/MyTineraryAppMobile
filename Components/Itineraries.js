@@ -14,7 +14,6 @@ const Itineraries = (props) => {
         const cityRedux = props.citiesFilter.find(city => city._id  === props.route.params.id)
         setCity(cityRedux)
     }, [])
-    // console.log(props.navigation)
     return(        
         <View style={styles.container}>
             <ImageBackground style={styles.fotoCiudad} source={{uri:`${city.path}`}}>
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
     containerText: {
         position:"absolute",
         width:"100%",
-        backgroundColor: "#aeafafab",
+        backgroundColor: "rgba(16,16,16,0.5)",
         justifyContent: "center",
         alignItems: "center",
     },

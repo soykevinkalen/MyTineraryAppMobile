@@ -58,7 +58,6 @@ const SignIn = (props) => {
                     25,
                     50
                 );
-                console.log(response)
             }else{
                 setUser({email: '', password: ''})
                 // const message = 'Welcome ' + props.user.firstName + " " + props.user.lastName

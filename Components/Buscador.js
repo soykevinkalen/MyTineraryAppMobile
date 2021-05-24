@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     containerText: {
         position:"absolute",
         width:"100%",
-        backgroundColor: "#aeafafab",
+        backgroundColor: "rgba(16,16,16,0.5)",
         justifyContent: "center",
         alignItems: "center",
     },

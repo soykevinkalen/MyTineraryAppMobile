@@ -31,7 +31,6 @@ const Navigation = (props) => {
             token: token,
             ...userData
             }
-            console.log("user forced",userForced)
             forced(userForced)
         }
     }
