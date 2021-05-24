@@ -1,9 +1,6 @@
-// import FlightTakeoffIcon from '@material-ui/icons/FlightTakeoff'
-// import VisibilityOffOutlinedIcon from '@material-ui/icons/VisibilityOffOutlined'
-// import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined'
-import Toast, {DURATION} from 'react-native-easy-toast'
-// import Footer from '../components/Footer'
+
 import React, { useState } from 'react';
+import {Icon} from 'react-native-elements'
 
 import {connect} from "react-redux"
 import authActions from '../redux/actions/authActions'
@@ -17,7 +14,7 @@ import {StyleSheet, ImageBackground, Text, View, TextInput, TouchableOpacity, To
 
 const SignIn = (props) => {
     const [user, setUser] = useState({email: '', password: ''})
-    // const [eye, setEye] = useState(false)
+    const [eye, setEye] = useState(true)
     // useEffect (() =>{
     //     window.scrollTo(0,0)
     // }, [])
@@ -48,6 +45,7 @@ const SignIn = (props) => {
                 25,
                 50
             );
+            return false
             
         }else{
             const response = await props.logInUser(user)
@@ -88,10 +86,10 @@ const SignIn = (props) => {
             <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/cQLgmDh/northern-lights-1197755-1920.jpg"}}>
                 {/* <div> */}
                     {/* <FlightTakeoffIcon className='logoForm'/> */}
-                    <Text style={styles.texto}>Sign in</Text>
                     <View style={styles.formulario}>
+                        <Text style={styles.texto}>Sign in</Text>
                         <TextInput 
-                            placeholder="Please, enter your email adress"
+                            placeholder="Enter your email adress"
                             placeholderTextColor = 'white'
                             color = 'white'
                             style = {styles.input}
@@ -99,20 +97,32 @@ const SignIn = (props) => {
                             value={user.email}
                             keyboardType='email-address'
                         />
-                        {/* <input type="text" placeholder="Please, enter your email adress"
+                        {/* <input type="text" placeholder="Enter your email adress"
                         onChange={readInputUser} value={user.email} name="email" /> */}
-                        <TextInput 
-                            secureTextEntry={true}
-                            placeholder="Please, enter your password"
-                            placeholderTextColor = 'white'
-                            color = 'white'
-                            style = {styles.input}
-                            onChangeText={(e) => readInputUser(e, 'password')}
-                            value={user.password}
-                            keyboardType='visible-password'
-                            textContentType='password'
+                        <View style = {styles.inputContainer}>
+                        
+                            <TextInput 
+                                secureTextEntry={eye}
+                                placeholder="Enter your password"
+                                placeholderTextColor = 'white'
+                                color = 'white'
+                                style = {styles.input}
+                                onChangeText={(e) => readInputUser(e, 'password')}
+                                value={user.password}                            
+                            />
+                            <View style={styles.eyeContainer}>
+                                <Icon 
+                                    type='material-community'
+                                    name= {eye ? "eye-off-outline" : "eye-outline"} 
+                                    // color={color}
+                                    size={40}
+                                    onPress={()=> setEye(!eye)}
+                                    color='white'
+
+                                />
+                            </View>
                             
-                        />
+                        </View>
                         {/* <div> */}
                             {/* <input type= "password" eye ? "text" : "password"  placeholder="Please, enter your password" */}
                             {/* onChange={readInputUser} value={user.password} name="password" /> */}
@@ -123,8 +133,8 @@ const SignIn = (props) => {
                             onPress={sendValueUser}>
                             <Text style={{color:'white'}}>Sign in!</Text>
                         </TouchableOpacity>
+                        <Text style={styles.text}>Don't have an account? <Text style={{fontWeight: 'bold'}} onPress={()=>props.navigation.navigate('signup')}>Sign up!</Text></Text>
                     </View>
-                    <Text style={styles.text}>Don't have an account? <Text style={{fontWeight: 'bold'}} onPress={()=>props.navigation.navigate('signup')}>Sign up!</Text></Text>
                     
             </ImageBackground>
         </>
@@ -132,12 +142,23 @@ const SignIn = (props) => {
 }
 
 const styles = StyleSheet.create({
+    inputContainer:{
+        width: '100%',
+        alignItems: 'center',
+        justifyContent:'center',
+        flexDirection: 'row'
+    },
+    eyeContainer: {
+        position:'absolute',
+        right: 20,
+        top: 20
+    },
     text:{
         fontSize: 20,
         color: 'white',
-        marginTop: 30,
-        backgroundColor: "#aeafafab",
-
+        marginTop: 10,
+        textAlign: 'center',
+        marginBottom: 10
     },
     background: {
       flex: 1,
@@ -147,25 +168,28 @@ const styles = StyleSheet.create({
     },
     texto: {
         fontSize: 30,
-        color: 'white',
-        marginTop: 10,
-        fontWeight: 'bold',
-        backgroundColor: "#aeafafab",
+          color: 'white',
+          // textDecorationLine: 'underline',
+          marginTop: 10,
+          fontWeight: 'bold',
+        //   backgroundColor: "#aeafafab",
     },
     formulario: {
-        width: '100%',
-        alignItems: 'center'
+        width: '90%',
+        alignItems: 'center',
+        backgroundColor: 'rgba(16,16,16,0.5)',
+        borderRadius:15,
     },
     input: {
-        width: '80%',
+        borderRadius: 12,
+        borderWidth: 2,
+        borderColor: 'rgba(0,0,0,0.9)',
+        width: '95%',
         height: 60,
-        borderBottomWidth: 5,
-        borderBottomColor: 'black',
         textAlign: 'center',
         fontSize: 20,
         marginTop: 10,
         textDecorationLine: 'none',
-        backgroundColor: "#aeafafab",
     },
     boton: {
         backgroundColor: 'black',
@@ -173,7 +197,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         fontSize: 20,
         marginTop: 30,
-        color: 'white'
+        color: 'white',
+        borderRadius: 12,
     }
 });
 

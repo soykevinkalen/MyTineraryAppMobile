@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     icontitle: {
         flexDirection: 'row',
         alignItems:'center',
-        width:'50%',
+        width:'30%',
     }
 })
 

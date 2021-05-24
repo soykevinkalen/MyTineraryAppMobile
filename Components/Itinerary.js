@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import itinerariesActions from '../redux/actions/itinerariesActions'
 import activitiesActions from '../redux/actions/activitiesActions'
 
-import { StyleSheet, Text, View, Image, TextInput, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, ImageBackground, ToastAndroid } from 'react-native';
 import Header from './Header'
 import { connect } from "react-redux"
 import LottieView from 'lottie-react-native';
@@ -44,6 +44,14 @@ const Itinerary = (props) => {
             await props.likes(props.user, props.itinerary)
             setLikes(!likes)
             setLoading(true)
+        }else{
+            ToastAndroid.showWithGravityAndOffset(
+                "Please start section",
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                50
+            );
         }
     }
    
@@ -56,6 +64,14 @@ const Itinerary = (props) => {
                 setNewComment('')
                 setLoading(true)
             }
+        }else{
+            ToastAndroid.showWithGravityAndOffset(
+                "Please start section",
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                50
+            );
         }
     }
     const deleteComment = async (comment) =>{
@@ -108,7 +124,7 @@ const Itinerary = (props) => {
                         type='material-community'
                         name='timer'
                         size={30}
-                        color = 'blue'           
+                        color = '#113251'           
                         />
                     <Text style={styles.text}>
                         {props.itinerary.duration} hours
@@ -160,6 +176,7 @@ const Itinerary = (props) => {
                         style = {styles.input}
                         onChangeText={(e) => setNewComment(e)}
                         value={newComment}
+                        editable={props.user ? true : false}
                     />
                     <Text style={[styles.button,styles.send]} onPress={()=> loading ? sendValues() : null}>Send</Text>
                     </View>}
@@ -219,7 +236,7 @@ const styles = StyleSheet.create({
         marginTop: 5,
     },
     hash: {
-        color:'blue',
+        color:'#0572e6',
         marginHorizontal: 5,
     },
     picActivity: {
@@ -268,7 +285,7 @@ const styles = StyleSheet.create({
     },
     container: {
         width: '100%',
-        backgroundColor: '#000',
+        backgroundColor: '#a1a1a1',
         // flexDirection: 'row',
         alignItems:'center',
         justifyContent: 'space-around',

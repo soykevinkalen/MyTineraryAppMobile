@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
+import { View, StyleSheet, ImageBackground, Image } from 'react-native';
 import {Icon} from 'react-native-elements'
 import { Title, Drawer, } from 'react-native-paper';
 import { connect } from "react-redux"
@@ -10,8 +10,8 @@ const DrawerContent = (props) =>{
     return(
         <View style={styles.drawerContent}>
             <View style={styles.userInfoSection}>
-                <ImageBackground style={styles.picUser} source={{uri: props.user ? props.user.userImage : 'https://i.ibb.co/VYzFrtX/usuario.png'}}>
-                </ImageBackground>
+                <Image style={styles.picUser} source={{uri: props.user ? props.user.userImage : 'https://i.ibb.co/VYzFrtX/usuario.png'}}>
+                </Image>
                 <Title style={styles.name}>{props.user ? props.user.firstName + " " + props.user.lastName : null}</Title>
             </View>
             <DrawerContentScrollView {...props}>
@@ -100,7 +100,10 @@ const styles = StyleSheet.create({
     },
     picUser: {
         width: 100,
-        height: 100
+        height: 100,
+        marginTop: 10,
+        borderRadius: 800,
+
     }
 })
 
