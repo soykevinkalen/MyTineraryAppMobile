@@ -55,7 +55,6 @@ const Home = (props) => {
     return(        
         <View style={styles.container}>
             <ScrollView style={styles.containerScroll}>
-                {/* <View style={styles.containerIconTextImage}> */}
                 <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/5nRR51M/sunset-690742-1920.jpg"}}> 
                     <View style={styles.containerIconText}>
                         <View style={styles.containerSub}>
@@ -71,20 +70,14 @@ const Home = (props) => {
                         <Text style={styles.subText}>Find your perfect trip, designed by insiders who know and love their cities!</Text>
                     </View>
                 </ImageBackground>
-                {/* </View> */}
-                
-                {/* <View style={styles.containerCallToAction}> */}
                 <ImageBackground source={{uri:"https://i.ibb.co/cQLgmDh/northern-lights-1197755-1920.jpg"}} style={styles.callToActionPic}>
                     <View style={styles.textButtonContainer}>
                         <Text style={styles.textCallToAction}>Let your adventure begin!</Text>
                         <Text style={styles.buttonCallToAction} title="Cities" onPress={() => props.navigation.navigate('cities')}>Cities</Text>
                     </View>
                 </ImageBackground>
-                {/* </View> */}
-
                 <View style={styles.containerCarrousel}>
                     <TouchableOpacity onPress={goForward}>
-                    
                     </TouchableOpacity>
                     <Carousel
                         ref={carouselRef}
@@ -160,12 +153,9 @@ const styles = StyleSheet.create({
     textButtonContainer:{
         color: "#000",
         position:"absolute",
-        // marginLeft: 15,
         width: "100%",
         alignItems: 'center',
-        justifyContent: 'center',
-
-        
+        justifyContent: 'center',        
     },
     callToActionPic:{
         width: "100%",
@@ -192,10 +182,6 @@ const styles = StyleSheet.create({
         fontFamily:'VarelaRound_400Regular',
         fontSize: 40,
         marginLeft: 10
-    },
-    picture: {
-        width: '100%',
-        height: 500,
     },
     containerIconText: {
         position:"absolute",

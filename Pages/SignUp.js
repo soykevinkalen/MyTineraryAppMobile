@@ -25,10 +25,7 @@ const SignUp = (props) => {
     }
 
     const sendValueUser = async () => {
-        setMistakes({firstName: '', lastName: '', email: '', password: '', userImage: '',country: ''})
-        // e && e.preventDefault()
-        // let userGen = e ? user : googleUser
-        
+        setMistakes({firstName: '', lastName: '', email: '', password: '', userImage: '',country: ''})        
         if(Object.values(user).some(value => value === "")){
             ToastAndroid.showWithGravityAndOffset(
                 "Fill in the fields",
@@ -43,7 +40,6 @@ const SignUp = (props) => {
         if(response){
             if(response.controllers){
                 if(response.controllers === "There was an error in the user engraving. Retry"){
-                    // return toast.error(response.controllers)
                     ToastAndroid.showWithGravityAndOffset(
                         "There was an error in the user engraving. Retry",
                         ToastAndroid.SHORT,
@@ -70,13 +66,9 @@ const SignUp = (props) => {
             props.navigation.navigate('home')            
         }
     }
-    // const responseGoogle = (response) => {
-    //     const {givenName, familyName, email, googleId, imageUrl} = response.profileObj
-    //     sendValueUser(null, {firstName: givenName, lastName: familyName , email, password: "a"+googleId, userImage: imageUrl, country: 'google', google: true})
-    // }
     return(
         
-            <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/cQLgmDh/northern-lights-1197755-1920.jpg"}}>
+            <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/3zczntf/pexels-efrain-alonso-3584283.jpg"}}>
                     <View style={styles.formulario}>
                     <Text style={styles.texto}>Sign up!</Text>
                         <TextInput 
@@ -195,62 +187,45 @@ const styles = StyleSheet.create({
         width: "100%",
         justifyContent: 'center',
       },
-      text:{
+    text:{
         fontSize: 20,
         color: 'white',
         marginTop: 10,
         textAlign: 'center',
         marginBottom: 10
       },
-      texto: {
-          fontSize: 30,
-          color: 'white',
-          // textDecorationLine: 'underline',
-          marginTop: 10,
-          fontWeight: 'bold',
-        //   backgroundColor: "#aeafafab",
-  
-      },
-    //   form: {
-    //     justifyContent: 'space-evenly',
-    //     width: '90%',
-    //     alignItems: 'center',
-    //     backgroundColor: 'rgba(16,16,16,0.5)',
-    //     borderRadius:15,
-    //   },
-      formulario: {
-            width: '90%',
-            alignItems: 'center',
-            backgroundColor: 'rgba(16,16,16,0.5)',
-            borderRadius:15,
-      },
-      input: {
-        // height: '10.7%',
-        // backgroundColor: 'rgba(0,0,0,0.9)',
+    texto: {
+        fontSize: 30,
+        color: 'white',
+        marginTop: 10,
+        fontWeight: 'bold',  
+    },
+    formulario: {
+        width: '90%',
+        alignItems: 'center',
+        backgroundColor: 'rgba(16,16,16,0.5)',
+        borderRadius:15,
+    },
+    input: {
         borderRadius: 12,
         borderWidth: 2,
         borderColor: 'rgba(0,0,0,0.9)',
         width: '95%',
         height: 60,
-        // borderBottomWidth: 5,
-        // borderBottomColor: 'black',
         textAlign: 'center',
         fontSize: 20,
         marginTop: 10,
-        textDecorationLine: 'none',
-        // backgroundColor: "#aeafafab",
-  
-      },
-      boton: {
-          backgroundColor: 'black',
-          paddingVertical: 5,
-          paddingHorizontal: 30,
-          fontSize: 20,
-          marginTop: 30,
-          color: 'white',
+        textDecorationLine: 'none',  
+    },
+    boton: {
+        backgroundColor: 'black',
+        paddingVertical: 5,
+        paddingHorizontal: 30,
+        fontSize: 20,
+        marginTop: 30,
+        color: 'white',
         borderRadius: 12,
-
-      }
+    }
   });
 
 const mapDispatchToProps = {

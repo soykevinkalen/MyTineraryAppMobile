@@ -1,5 +1,4 @@
 import axios from 'axios'
-// import {toast } from 'react-toastify'
 
 const itinerariesActions = {
     getItinerariesByCity: (id) => {
@@ -33,7 +32,6 @@ const itinerariesActions = {
                 return response.data.respuesta
             }catch(error){
                 console.log(error)
-                // toast.error('Ops... An error occurred, contact the administrator')
             }
         }
     },
@@ -48,8 +46,6 @@ const itinerariesActions = {
                 dispatch({type: 'LIKES', payload: response.data.respuesta})
             }catch(error){
                 console.log(error)
-                // toast.error('Ops... An error occurred, contact the administrator')
-
           }
       }
     },
@@ -65,8 +61,6 @@ const itinerariesActions = {
                 return response.data.respuesta
             }catch(error){
                 console.log(error)
-                // toast.error('Ops... An error occurred, contact the administrator')
-
             }
         }
     },
@@ -82,8 +76,6 @@ const itinerariesActions = {
                 return response.data.respuesta
             }catch(error){
                 console.log(error)
-                // toast.error('Ops... An error occurred, contact the administrator')
-
             }
         }
     }

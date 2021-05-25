@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
         fontFamily:'VarelaRound_400Regular',
-        // marginLeft: 5,
         fontSize: 25        
     },
     icontitle: {

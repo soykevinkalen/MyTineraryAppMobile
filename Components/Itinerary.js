@@ -90,16 +90,8 @@ const Itinerary = (props) => {
             <ImageBackground style={styles.picUser} source={{uri:`${props.itinerary.authorImage}`}}></ImageBackground>
             <Text style={styles.text}>{props.itinerary.authorName}</Text>
             <View style={styles.caja}>
-                
-
                 <View style={styles.valoration}>
-                    <Icon 
-                        type='material-community'
-                        name='heart-outline'
-                        size={30}
-                        color = {likes ? 'red' : 'black'} 
-                        onPress = {() => loading ? like() : null}           
-                        />
+                    <Icon type='material-community' name='heart-outline' size={30} color = {likes ? 'red' : 'black'} onPress = {() => loading ? like() : null} />
                     <Text style={styles.text}>
                         {props.itinerary.usersLiked.length}
                     </Text>
@@ -108,31 +100,15 @@ const Itinerary = (props) => {
                     <Text style={styles.text}>
                         Price:
                     </Text>
-                        {[...Array(props.itinerary.price)].map((p,i) => <Icon 
-                                                                            type='material-community'
-                                                                            name='cash'
-                                                                            size={30}
-                                                                            color = 'green' 
-                                                                            key={i}  
-                                                                            />)}
+                        {[...Array(props.itinerary.price)].map((p,i) => <Icon type='material-community' name='cash' size={30} color = 'green' key={i} />)}
                 </View>
-                
-
                 <View style={styles.valoration}>
-
-                    <Icon 
-                        type='material-community'
-                        name='timer'
-                        size={30}
-                        color = 'rgb(0,113,178)'           
-                        />
+                    <Icon type='material-community' name='timer' size={30} color = 'rgb(0,113,178)' />
                     <Text style={styles.text}>
                         {props.itinerary.duration} hours
                     </Text>
                 </View>
-                {/* <div><FavoriteIcon className='curser' style={{color:`${likes ? 'red' : 'white' }`}} onClick={loading ? like : null}/> {props.itinerary.usersLiked.length} </div>
-                <div> <span>Price: </span>{[...Array(props.itinerary.price)].map((p,i) => <LocalAtmIcon className="diner" key={i}/>)}</div>
-                <div><WatchLaterIcon className="watch"/> {props.itinerary.duration} <span>hours</span></div> */}
+               
             </View>
             <View style={styles.hashtagContainer}>
                 {
@@ -248,25 +224,10 @@ const styles = StyleSheet.create({
         width: 100,
         height: 100
     },
-    containerText: {
-        position:"absolute",
-        width:"100%",
-        backgroundColor: "#aeafafab",
-        justifyContent: "center",
-        alignItems: "center",
-    },
     text: {
         color: 'white',
-        // fontFamily:'VarelaRound_400Regular',
         fontSize: 20,
         textAlign: 'center',
-        // marginLeft: 10,
-        // position: "absolute"
-    },
-    preloader:{
-        // marginTop: 10,
-        width: "100%",
-        height: 500
     },
     input: {
         width: '60%',
@@ -286,24 +247,11 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         backgroundColor: 'rgba(60,42,116,0.7)',
-        // flexDirection: 'row',
         alignItems:'center',
         justifyContent: 'space-around',
-        // marginTop: 10    
     },
-    nombreCiudad: {
-        paddingBottom:20,
-        color:'white',
-        fontSize: 10,
-    },
-    fotoCiudad: {
-        width: 350,
-        height: 250,
-        borderRadius:45,
-        borderWidth: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    },
+    
+    
 })
 
 const mapStateToProps = state => {

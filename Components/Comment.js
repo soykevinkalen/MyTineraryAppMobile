@@ -75,7 +75,6 @@ const Comment = (props) => {
             <Text style={styles.text}>{props.comment.comment}</Text>}
             {view && (
                 <View  style={styles.inputButton}>
-                    {/* <TextInput onKeyDown={enter} type="text" placeholder="Write your comment here"  onChange={(e)=>setUpdatedComment(e.target.value)} value={updatedComment}/> */}
                     <TextInput 
                         placeholder="Write a comment"
                         placeholderTextColor = 'white'
@@ -120,25 +119,10 @@ const styles = StyleSheet.create({
         height: 50,
         borderRadius: 800
     },
-    containerText: {
-        position:"absolute",
-        width:"100%",
-        backgroundColor: "#aeafafab",
-        justifyContent: "center",
-        alignItems: "center",
-    },
     text: {
         color: 'white',
-        // fontFamily:'VarelaRound_400Regular',
         fontSize: 20,
-        // marginLeft: 10,
-        // position: "absolute"
         marginHorizontal: 5
-    },
-    preloader:{
-        // marginTop: 10,
-        width: "100%",
-        height: 500
     },
     input: {
         width: '60%',
@@ -152,32 +136,15 @@ const styles = StyleSheet.create({
         borderRadius: 20,
         borderColor: "red"
     },
-    caja:{
-        alignItems: "center"
-    },
     container: {
         width: '100%',
         backgroundColor: '#000',
-        // flexDirection: 'row',
         alignItems:'center',
         justifyContent: 'space-around',
         borderColor: 'white',
         paddingVertical: 5,
         borderRadius: 10,
         margin: 5    
-    },
-    nombreCiudad: {
-        paddingBottom:20,
-        color:'white',
-        fontSize: 10,
-    },
-    fotoCiudad: {
-        width: 350,
-        height: 250,
-        borderRadius:45,
-        borderWidth: 1,
-        alignItems: "center",
-        justifyContent: "center",
     },
 })
 
@@ -187,8 +154,4 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = {
-    
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Comment)
+export default connect(mapStateToProps)(Comment)

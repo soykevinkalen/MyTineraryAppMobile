@@ -1,5 +1,4 @@
 import axios from 'axios'
-// import {toast } from 'react-toastify'
 
 const authActions = {
     createUser: (user) => {
@@ -62,7 +61,6 @@ const authActions = {
                 }})
             } catch(error) {
                 console.log(error)
-                // toast.error('Ops... An error occurred, contact the administrator')  
             }
             
         }

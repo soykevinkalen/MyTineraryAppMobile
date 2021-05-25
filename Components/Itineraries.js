@@ -43,43 +43,14 @@ const styles = StyleSheet.create({
     },
     text: {
         color: 'white',
-        // fontFamily:'VarelaRound_400Regular',
         fontSize: 20,
-        // marginLeft: 10,
-        // position: "absolute"
-    },
-    preloader:{
-        // marginTop: 10,
-        width: "100%",
-        height: 500
-    },
-    input: {
-        width: '60%',
-        height: 60,
-        backgroundColor: 'black',
-        textAlign: 'center',
-        fontSize: 20,
-        marginTop: 10,
-        marginBottom: 10,
-        textDecorationLine: 'none',
-        borderRadius: 20,
-        borderColor: "red"
-    },
-    caja:{
-        alignItems: "center"
     },
     container: {
         width: '100%',
         backgroundColor: '#000',
-        // flexDirection: 'row',
         alignItems:'center',
         justifyContent: 'space-around',
         height: "100%"    
-    },
-    nombreCiudad: {
-        paddingBottom:20,
-        color:'white',
-        fontSize: 10,
     },
     fotoCiudad: {
         width: 350,

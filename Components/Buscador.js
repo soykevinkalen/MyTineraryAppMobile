@@ -50,18 +50,6 @@ const styles = StyleSheet.create({
         marginTop: 10,
         borderRadius:45,
         textDecorationLine: 'none'
-        // color:'black',
-        // borderColor:'white',
-        // width: '60%',
-        // height: 60,
-        // backgroundColor: 'black',
-        // textAlign: 'center',
-        // fontSize: 20,
-        // marginTop: 10,
-        // marginBottom: 10,
-        // textDecorationLine: 'none',
-        // borderRadius: 20,
-        // borderColor: "red"
     },
     caja:{
         alignItems: "center",
@@ -70,20 +58,13 @@ const styles = StyleSheet.create({
     container: {
         width: '100%',
         backgroundColor: '#000',
-        // flexDirection: 'row',
         alignItems:'center',
         justifyContent: 'space-around',
         marginTop: 30,
         height:'100%'    
     },
-    text: {
-        color: 'white',
-        fontFamily:'VarelaRound_400Regular'        
-    },
     nombreCiudad: {
-        // paddingBottom:20,
         color:'white',
-        // width: "100%",
         textAlign: "center",
         fontSize: 20,        
     },
