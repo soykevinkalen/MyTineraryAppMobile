@@ -4,7 +4,8 @@ import {connect} from "react-redux"
 import authActions from '../redux/actions/authActions'
 import {Icon} from 'react-native-elements'
 import SelectPicker from 'react-native-form-select-picker';
-import { StyleSheet, ImageBackground, Text, View, TextInput, TouchableOpacity,ToastAndroid } from 'react-native'
+import { StyleSheet, ImageBackground, Text, View, TextInput, TouchableOpacity, ToastAndroid, Button } from 'react-native'
+import * as Google from "expo-google-app-auth";
 
 const SignUp = (props) => { 
     const [user, setUser] = useState({firstName: '', lastName: '', email: '', password: '', userImage: '', country: ''})
@@ -66,6 +67,30 @@ const SignUp = (props) => {
             props.navigation.navigate('home')            
         }
     }
+    const signUpAsync = async () => {
+        try {
+          const { type, user } = await Google.logInAsync({
+            iosClientId: "974935643152-njitq8e3k3o8a2mjrrdab6ul1lbvicu4.apps.googleusercontent.com",
+            androidClientId: "974935643152-mbved12rng5vjl4r2bpr0ihm3umjg2m5.apps.googleusercontent.com",
+          });
+    
+          if (type === "success") {
+            const response = await props.createUser({firstName: user.givenName, lastName: user.familyName, email: user.email, password: 'a'+user.id, userImage: user.photoUrl, country: 'google', google: true})
+            if(!response){
+                ToastAndroid.showWithGravityAndOffset(
+                    `Welcome ${user.givenName + " " + user.familyName}`,
+                    ToastAndroid.SHORT,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    50
+                );
+            props.navigation.navigate('home')  
+            }
+          }
+        } catch (error) {
+          console.log("LoginScreen.js 19 | error with login", error);
+        }
+    };
     return(
         
             <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/3zczntf/pexels-efrain-alonso-3584283.jpg"}}>
@@ -154,7 +179,7 @@ const SignUp = (props) => {
                             <Text style={{color:'white'}}>Sign up!</Text>
                         </TouchableOpacity>
                         <Text style={styles.text}>Already have an account? <Text style={{fontWeight: 'bold'}} onPress={()=>props.navigation.navigate('signin')}>Sign in here!</Text></Text>
-                        
+                        <Button style={styles.button} title="Sign up with Google" onPress={signUpAsync} />
                     </View>
                 
             </ImageBackground>

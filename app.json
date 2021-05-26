@@ -17,7 +17,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.webiosandroid.all",
+      "config":{
+        "googleSignIn": {
+          "reservedClientId":"com.googleusercontent.apps.974935643152-njitq8e3k3o8a2mjrrdab6ul1lbvicu4"
+        }
+      }
     },
     "android": {
       "adaptiveIcon": {

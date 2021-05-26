@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import {Icon} from 'react-native-elements'
 import {connect} from "react-redux"
 import authActions from '../redux/actions/authActions'
-import {StyleSheet, ImageBackground, Text, View, TextInput, TouchableOpacity, ToastAndroid } from 'react-native'
+import {StyleSheet, ImageBackground, Text, View, TextInput, TouchableOpacity, ToastAndroid, Button } from 'react-native'
+import * as Google from "expo-google-app-auth";
+
 
 const SignIn = (props) => {
     const [user, setUser] = useState({email: '', password: ''})
@@ -48,6 +50,42 @@ const SignIn = (props) => {
             }
         }
     }
+
+    const signInAsync = async () => {
+        try {
+          const { type, user } = await Google.logInAsync({
+            iosClientId: "974935643152-njitq8e3k3o8a2mjrrdab6ul1lbvicu4.apps.googleusercontent.com",
+            androidClientId: "974935643152-mbved12rng5vjl4r2bpr0ihm3umjg2m5.apps.googleusercontent.com",
+          });
+    
+          if (type === "success") {
+            const userr = {email: user.email, password: 'a'+user.id}
+            const response = await props.logInUser(userr)
+            if(response){
+                ToastAndroid.showWithGravityAndOffset(
+                    response,
+                    ToastAndroid.SHORT,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    50
+                );
+            }else{
+                setUser({email: '', password: ''})
+                ToastAndroid.showWithGravityAndOffset(
+                    `Welcome ${user.givenName + " " + user.familyName}`,
+                    ToastAndroid.SHORT,
+                    ToastAndroid.BOTTOM,
+                    25,
+                    50
+                );
+                props.navigation.navigate('home')  
+            }
+          }
+        } catch (error) {
+          console.log("SignIn.js 85 | error with login", error);
+        }
+    };
+
     return(
         <>
             <ImageBackground style={styles.background} source={{uri:"https://i.ibb.co/3zczntf/pexels-efrain-alonso-3584283.jpg"}}>
@@ -90,14 +128,19 @@ const SignIn = (props) => {
                             <Text style={{color:'white'}}>Sign in!</Text>
                         </TouchableOpacity>
                         <Text style={styles.text}>Don't have an account? <Text style={{fontWeight: 'bold'}} onPress={()=>props.navigation.navigate('signup')}>Sign up!</Text></Text>
-                    </View>
                     
+                        <Button style={styles.button} title="Login with Google" onPress={signInAsync} />
+                    
+                    </View>
             </ImageBackground>
         </>
     )
 }
 
 const styles = StyleSheet.create({
+    button:{
+        marginVertical: 10
+    },
     inputContainer:{
         width: '100%',
         alignItems: 'center',
