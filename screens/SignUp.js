@@ -215,14 +215,15 @@ const styles = StyleSheet.create({
     text:{
         fontSize: 20,
         color: 'white',
-        marginTop: 10,
+        // marginTop: 10,
         textAlign: 'center',
-        marginBottom: 10
+        // marginBottom: 10
+        marginVertical: 5
       },
     texto: {
         fontSize: 30,
         color: 'white',
-        marginTop: 10,
+        // marginTop: 10,
         fontWeight: 'bold',  
     },
     formulario: {
@@ -230,6 +231,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'rgba(16,16,16,0.5)',
         borderRadius:15,
+        paddingVertical: 5
     },
     input: {
         borderRadius: 12,

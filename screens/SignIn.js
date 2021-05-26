@@ -176,6 +176,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'rgba(16,16,16,0.5)',
         borderRadius:15,
+        paddingBottom: 10
     },
     input: {
         borderRadius: 12,
