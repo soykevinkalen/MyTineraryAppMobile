@@ -1,10 +1,10 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react'
 import Itineraries from '../components/Itineraries';
-import Cities from '../pages/Cities';
-import Home from '../pages/Home';
-import SignIn from '../pages/SignIn';
-import SignUp from '../pages/SignUp';
+import Cities from '../screens/Cities';
+import Home from '../screens/Home';
+import SignIn from '../screens/SignIn';
+import SignUp from '../screens/SignUp';
 import Header from '../components/Header'
 
 const stack = createStackNavigator()

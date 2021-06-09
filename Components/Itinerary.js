@@ -132,7 +132,7 @@ const Itinerary = (props) => {
                 </View>
                 <ImageBackground source={{uri:"https://i.ibb.co/cQLgmDh/northern-lights-1197755-1920.jpg"}} style={styles.commentContainer}>
                     <Text style={[styles.text,styles.title,styles.commentTitle]}>Comments</Text>
-                    <ScrollView>
+                    <ScrollView style={styles.commentsContainer}>
                         {allComments.length ? 
                             allComments.map(comment => {
                                 return(
@@ -173,6 +173,7 @@ const styles = StyleSheet.create({
         width: '100%',
         alignItems:'center',
         justifyContent: 'space-around',
+        
     },
     inputButton:{
         flexDirection:'row',
