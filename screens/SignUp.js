@@ -75,17 +75,17 @@ const SignUp = (props) => {
           });
     
           if (type === "success") {
-            const response = await props.createUser({firstName: user.givenName, lastName: user.familyName, email: user.email, password: 'a'+user.id, userImage: user.photoUrl, country: 'google', google: true})
-            if(!response){
-                ToastAndroid.showWithGravityAndOffset(
-                    `Welcome ${user.givenName + " " + user.familyName}`,
-                    ToastAndroid.SHORT,
-                    ToastAndroid.BOTTOM,
-                    25,
-                    50
-                );
+            props.createUser({firstName: user.givenName, lastName: user.familyName, email: user.email, password: 'a'+user.id, userImage: user.photoUrl, country: 'google', google: true})
+            
+            ToastAndroid.showWithGravityAndOffset(
+                `Welcome ${user.givenName + " " + user.familyName}`,
+                ToastAndroid.SHORT,
+                ToastAndroid.BOTTOM,
+                25,
+                50
+            );
             props.navigation.navigate('home')  
-            }
+            
           }
         } catch (error) {
           console.log("LoginScreen.js 19 | error with login", error);

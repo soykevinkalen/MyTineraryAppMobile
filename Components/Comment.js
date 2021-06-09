@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import itinerariesActions from '../redux/actions/itinerariesActions'
-import { StyleSheet, Text, View, Image, TextInput, ImageBackground } from 'react-native';
+import { StyleSheet, Text, View, Image, TextInput, ImageBackground, Alert } from 'react-native';
 import Header from './Header'
 import { connect } from "react-redux"
 import LottieView from 'lottie-react-native';
@@ -20,7 +20,25 @@ const Comment = (props) => {
         setClose(!close)
         setUpdatedComment(comment.comment)
     }
-    
+    const twoOptionAlertHandler = () => {
+        //function to make two option alert
+        Alert.alert(
+          //title
+          'Are you sure?',
+          //body
+          "You won't be able to revert this!",
+          [
+            { text: 'Yes', onPress: () => props.deleteComment(props.comment) },
+            {
+              text: 'No',
+              onPress: () => console.log('No Pressed'),
+              style: 'cancel',
+            },
+          ],
+          { cancelable: false }
+          //clicking out side of alert will not cancel
+        );
+      };
     const send = () => {
         if(updatedComment.trim() !== ""){
             props.comment.comment = updatedComment
@@ -35,7 +53,7 @@ const Comment = (props) => {
     }
     return(        
         <View style={styles.container}>
-            <View style={styles.imageText}>
+            <View style={[styles.imageText, styles.cajaGrande]}>
                 <View style={styles.imageText}>
                     <Image style={styles.picUser} source={{uri:`${props.comment.userId.userImage}`}}></Image>
                     <Text style={styles.text}>{props.comment.userId.firstName + " " + props.comment.userId.lastName }</Text>
@@ -64,7 +82,7 @@ const Comment = (props) => {
                         name='delete'
                         size={30}
                         color = 'blue'
-                        onPress = {() => props.deleteComment(props.comment)}           
+                        onPress = {() => twoOptionAlertHandler()}           
                     />
                 </View>}
                 </> : null
@@ -122,7 +140,7 @@ const styles = StyleSheet.create({
     text: {
         color: 'white',
         fontSize: 20,
-        marginHorizontal: 5
+        marginHorizontal: 5,
     },
     input: {
         width: '60%',
@@ -144,8 +162,11 @@ const styles = StyleSheet.create({
         borderColor: 'white',
         paddingVertical: 5,
         borderRadius: 10,
-        margin: 5    
+        marginVertical: 5
     },
+    cajaGrande: {
+        width: '100%'
+    }
 })
 
 const mapStateToProps = state => {
